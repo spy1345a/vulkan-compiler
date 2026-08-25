@@ -1,0 +1,13 @@
+# python cach files
+__pycache__/*
+__pycache__
+
+
+#enviroment files
+*.venv
+
+# complied code
+*.toyc
+
+# compiled shaders
+*.spv
