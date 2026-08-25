@@ -1,4 +1,4 @@
-# Vulken Compiler
+# Vulkan Compiler
 
 A toy expression compiler that compiles arithmetic expressions to bytecode and
 executes them on **both** the CPU (tree-walking evaluator) and the GPU
@@ -86,4 +86,4 @@ kernel definitions.
 
 ## License
 
-TBD
+This project is licensed under the [MIT License](LICENSE).
