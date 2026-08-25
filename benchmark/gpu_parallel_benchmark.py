@@ -15,7 +15,7 @@ from compiler import Lexer, Parser
 from compiler.gpu import Flattener
 from compiler.gpu.dispatch import GPUExecutor, compile_shader
 
-STAGES = ["compile", "buffers", "setup", "dispatch", "readback"]
+STAGES = ["compile", "buffers", "setup", "dispatch", "readback", "gpu_exec"]
 ENV = {"a": 10.0, "b": 5.0, "c": 2.5, "d": 4.0}
 EXPRESSION = "((a * b) + (c * d)) / (a - b)"
 DEFAULT_SIZES = [10, 25, 50, 100, 250, 500, 750, 1000]
@@ -78,9 +78,9 @@ def run_size(n, executors):
 
 def header(title, device):
     return [
-        "=" * 100,
+        "=" * 112,
         f" {title}",
-        "=" * 100,
+        "=" * 112,
         f"Date      : {time.strftime('%Y-%m-%d %H:%M:%S')}",
         f"Platform  : {platform.platform()}",
         f"Python    : {platform.python_version()}",
@@ -90,29 +90,31 @@ def header(title, device):
         f" instances (one Vulkan instance each)",
         f"Task      : lex -> parse -> flatten -> dispatch (glslc compile cached,"
         f" timed separately)",
-        "-" * 100,
+        "-" * 112,
         "",
     ]
 
 
 def summary_table(rows):
     lines = [
-        "-" * 100,
+        "-" * 112,
         f"{'N':>6} {'Workers':>8} {'Wall (ms)':>13} {'Tasks/s':>9}"
-        f" {'Parallel':>10} {'AvgTask':>10} {'Compile':>10} {'Setup':>10}"
-        f" {'Dispatch':>11} {'Readback':>10}",
-        "-" * 100,
+        f" {'Parallel':>10} {'AvgTask':>10} {'Compile':>9} {'Setup':>9}"
+        f" {'Dispatch':>10} {'GpuExec':>9} {'Readback':>9}",
+        "-" * 112,
     ]
     for r in rows:
         st = r["stages"]
         lines.append(
             f"{r['n']:>6} {r['workers']:>8} {r['wall']:>13.4f}"
             f" {r['throughput']:>9.2f} {r['parallelism']:>9.2f}x"
-            f" {r['avg']:>10.4f} {st['compile']:>10.4f} {st['buffers'] + st['setup']:>10.4f}"
-            f" {st['dispatch']:>11.4f} {st['readback']:>10.4f}"
+            f" {r['avg']:>10.4f} {st['compile']:>9.4f}"
+            f" {st['buffers'] + st['setup']:>9.4f}"
+            f" {st['dispatch']:>10.4f} {st['gpu_exec']:>9.4f}"
+            f" {st['readback']:>9.4f}"
         )
-    lines.append("-" * 100)
-    lines.append("=" * 100)
+    lines.append("-" * 112)
+    lines.append("=" * 112)
     return lines
 
 
@@ -164,7 +166,8 @@ def main():
               f"wall {row['wall']:.4f} ms   "
               f"{row['throughput']:.2f} tasks/s   "
               f"{row['parallelism']:.2f}x parallel   "
-              f"(compile {st['compile']:.4f}, dispatch {st['dispatch']:.4f} ms/task)")
+              f"(dispatch {st['dispatch']:.4f}, "
+              f"gpu_exec {st['gpu_exec']:.4f} ms/task)")
 
     export(rows, device_name)
 

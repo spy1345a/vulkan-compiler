@@ -1,0 +1,67 @@
+====================================================================================================
+ MULTITHREADED CPU vs MAX-PARALLEL GPU BENCHMARK
+====================================================================================================
+Started   : 2026-08-25 16:09:16
+Finished  : 2026-08-25 16:09:17   (total 0.6 s)
+Platform  : Linux-7.2.0-1-cachyos-x86_64-with-glibc2.44
+Python    : 3.14.7
+CPU       : Intel(R) Core(TM) i5-4440 CPU @ 3.10GHz
+GPU       : AMD Radeon RX 580 2048SP (RADV POLARIS10)
+
+----------------------------------------------------------------------------------------------------
+ WHAT THIS TEST DOES
+----------------------------------------------------------------------------------------------------
+1. Workload      : evaluate 10 arithmetic expressions x 5 repetitions = 50 tasks
+2. Each task     : full pipeline (lex -> parse -> eval on CPU, lex -> parse -> flatten -> dispatch on GPU)
+3. CPU mode      : ThreadPoolExecutor with multiple worker threads. NOTE: CPython's GIL serializes pure-Python bytecode, so CPU scaling
+                   reflects concurrent scheduling, not true multicore execution.
+4. GPU mode      : ThreadPoolExecutor with a pre-built pool of independent GPUExecutor instances (one Vulkan instance/device each),
+                   dispatching concurrently at maximum worker count. glslc shader compilation is cached (disk + memory) and excluded
+                   from steady-state timing.
+5. Timing        : host wall-clock via time.perf_counter(); device-side GPU execution measured with Vulkan timestamp queries (ns resolution,
+                   TOP_OF_PIPE -> BOTTOM_OF_PIPE around the dispatch), converted with the device timestampPeriod.
+6. Protocol      : 1 untimed warm-up task, then a single-worker sequential baseline pass, then the multi-worker parallel pass.
+
+----------------------------------------------------------------------------------------------------
+ DETAILED RESULTS
+----------------------------------------------------------------------------------------------------
+
+====================================================================================================
+ CPU RESULTS (Intel(R) Core(TM) i5-4440 CPU @ 3.10GHz, 4 threads)
+====================================================================================================
+Tasks                 : 50
+Sequential wall       : 3.0185 ms
+Multithreaded wall    : 2.6565 ms
+Speedup               : 1.14x
+Throughput            : 18821.84 tasks/s (sequential: 16564.40 tasks/s)
+Task time (ms)        : avg 0.0131   p50 0.0118   p95 0.0267   min 0.0054   max 0.0332
+
+====================================================================================================
+ GPU RESULTS (AMD Radeon RX 580 2048SP (RADV POLARIS10), 64 workers)
+====================================================================================================
+Tasks                 : 50
+Sequential wall       : 111.0607 ms
+Parallel wall         : 105.6709 ms
+Speedup               : 1.05x
+Throughput            : 473.17 tasks/s (sequential: 450.20 tasks/s)
+Effective parallelism : 42.88x (sum of task durations / wall time)
+Host task time (ms)   : avg 90.6214   p50 94.8563   p95 97.7016   min 53.2274   max 98.6670
+
+ Device-side stage totals across all tasks (Vulkan timestamp queries):
+   gpu_exec (device)  : avg 0.0164 ms   p95 0.0170   max 0.0170
+   host dispatch      : avg 0.5218 ms
+   buffers upload     : avg 27.8661 ms
+   pipeline setup     : avg 37.1501 ms
+   readback           : avg 25.0659 ms
+   shader compile     : avg 0.0009 ms (cached)
+
+====================================================================================================
+ HEAD TO HEAD
+====================================================================================================
+Backend         Wall (ms)      Tasks/s      ms / task
+----------------------------------------------------------------------------------------------------
+CPU                2.6565     18821.84         0.0531
+GPU              105.6709       473.17         2.1134
+----------------------------------------------------------------------------------------------------
+Winner: CPU (39.78x faster wall-clock)
+====================================================================================================

@@ -1,0 +1,44 @@
+====================================================================================================
+ BATCH-DISPATCH BENCHMARK RESULTS
+====================================================================================================
+Started   : 2026-08-25 16:37:50
+Finished  : 2026-08-25 16:37:51   (total 1.1 s)
+Platform  : Linux-7.2.0-1-cachyos-x86_64-with-glibc2.44
+Python    : 3.14.7
+CPU       : Intel(R) Core(TM) i5-4440 CPU @ 3.10GHz
+GPU       : AMD Radeon RX 580 2048SP (RADV POLARIS10)
+Expression: ((a * b) + (c * d)) / (a - b)   (4 variables)
+
+----------------------------------------------------------------------------------------------------
+ WHAT THIS TEST DOES
+----------------------------------------------------------------------------------------------------
+1. Workload   : evaluate one arithmetic expression '((a * b) + (c * d)) / (a - b)'
+                for N independent variable assignments (a, b, c, d), i.e. N results per test.
+2. CPU mode   : sequential tree-walking evaluation of every instance in a Python loop (the interpreter's
+                natural batch strategy).
+3. GPU mode   : ONE data-parallel dispatch. All N variable sets are uploaded, the compute shader runs one
+                invocation per instance (local_size_x = 64), all results read back in one call.
+4. Timing     : host wall-clock via time.perf_counter(); device-side execution from Vulkan timestamp queries.
+5. Correctness: GPU results verified against CPU evaluation of every instance (float32 tolerance 1e-3 relative).
+6. Protocol   : GPU side runs each size multiple times (warm cache); best and average reported. Shader compilation
+                is cached and excluded.
+
+----------------------------------------------------------------------------------------------------
+ DETAILED RESULTS
+----------------------------------------------------------------------------------------------------
+
+       N     CPU (ms)     CPU ev/s  GPU best (ms)  GPU avg (ms)    GPU ev/s   Speedup  Dev exec (ms)  Verify
+----------------------------------------------------------------------------------------------------
+    1000         2.76       362617           1.85          2.67      540253      1.5x         0.0199      OK
+   10000        26.88       371964           4.20          4.75     2379238      6.4x         0.0297      OK
+   50000       135.80       368196          12.24         12.70     4083412     11.1x         0.0957      OK
+  200000       524.08       381621          41.11         43.08     4864405     12.7x         0.3161      OK
+----------------------------------------------------------------------------------------------------
+
+Crossover : GPU becomes faster than CPU at N = 1000
+
+Interpretation:
+  - GPU cost is dominated by fixed per-call overhead (buffer upload + pipeline build); the actual
+    device execution grows far slower than linearly with N, so throughput climbs with batch size.
+  - CPU cost is strictly linear: every instance costs another tree-walk.
+====================================================================================================

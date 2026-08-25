@@ -1,7 +1,7 @@
 ==============================================================================
  CPU BENCHMARK RESULTS
 ==============================================================================
-Date      : 2026-08-25 15:22:10
+Date      : 2026-08-25 16:09:16
 Platform  : Linux-7.2.0-1-cachyos-x86_64-with-glibc2.44
 Python    : 3.14.7
 Device    : CPU
@@ -10,157 +10,157 @@ Runs      : 10 per expression (after 1 untimed warm-up run)
 
 [01] a + b
      result : 15.000000
-     run 01  : 0.0545 ms
-     run 02  : 0.0170 ms
-     run 03  : 0.0093 ms
-     run 04  : 0.0076 ms
-     run 05  : 0.0067 ms
-     run 06  : 0.0066 ms
-     run 07  : 0.0062 ms
-     run 08  : 0.0061 ms
+     run 01  : 0.0676 ms
+     run 02  : 0.0262 ms
+     run 03  : 0.0096 ms
+     run 04  : 0.0079 ms
+     run 05  : 0.0066 ms
+     run 06  : 0.0068 ms
+     run 07  : 0.0063 ms
+     run 08  : 0.0060 ms
      run 09  : 0.0057 ms
-     run 10  : 0.0055 ms
-     avg    : 0.0125 ms   min: 0.0055 ms   max: 0.0545 ms
+     run 10  : 0.0057 ms
+     avg    : 0.0148 ms   min: 0.0057 ms   max: 0.0676 ms
 
 [02] a - b
      result : 5.000000
-     run 01  : 0.0071 ms
+     run 01  : 0.0075 ms
      run 02  : 0.0063 ms
      run 03  : 0.0059 ms
-     run 04  : 0.0060 ms
-     run 05  : 0.0058 ms
-     run 06  : 0.0056 ms
+     run 04  : 0.0061 ms
+     run 05  : 0.0059 ms
+     run 06  : 0.0057 ms
      run 07  : 0.0054 ms
-     run 08  : 0.0055 ms
+     run 08  : 0.0056 ms
      run 09  : 0.0054 ms
-     run 10  : 0.0056 ms
-     avg    : 0.0058 ms   min: 0.0054 ms   max: 0.0071 ms
+     run 10  : 0.0055 ms
+     avg    : 0.0059 ms   min: 0.0054 ms   max: 0.0075 ms
 
 [03] a * b
      result : 50.000000
-     run 01  : 0.0561 ms
-     run 02  : 0.0076 ms
-     run 03  : 0.0058 ms
-     run 04  : 0.0055 ms
+     run 01  : 0.0075 ms
+     run 02  : 0.0067 ms
+     run 03  : 0.0057 ms
+     run 04  : 0.0054 ms
      run 05  : 0.0055 ms
      run 06  : 0.0054 ms
      run 07  : 0.0059 ms
      run 08  : 0.0054 ms
-     run 09  : 0.0056 ms
-     run 10  : 0.0053 ms
-     avg    : 0.0108 ms   min: 0.0053 ms   max: 0.0561 ms
+     run 09  : 0.0139 ms
+     run 10  : 0.0054 ms
+     avg    : 0.0067 ms   min: 0.0054 ms   max: 0.0139 ms
 
 [04] a / b
      result : 2.000000
-     run 01  : 0.0070 ms
-     run 02  : 0.0062 ms
+     run 01  : 0.0064 ms
+     run 02  : 0.0061 ms
      run 03  : 0.0055 ms
      run 04  : 0.0053 ms
      run 05  : 0.0054 ms
      run 06  : 0.0053 ms
-     run 07  : 0.0053 ms
+     run 07  : 0.0052 ms
      run 08  : 0.0052 ms
-     run 09  : 0.0052 ms
-     run 10  : 0.0053 ms
-     avg    : 0.0056 ms   min: 0.0052 ms   max: 0.0070 ms
+     run 09  : 0.0051 ms
+     run 10  : 0.0052 ms
+     avg    : 0.0055 ms   min: 0.0051 ms   max: 0.0064 ms
 
 [05] a + b * 2
      result : 20.000000
      run 01  : 0.0149 ms
-     run 02  : 0.0115 ms
+     run 02  : 0.0112 ms
      run 03  : 0.0090 ms
-     run 04  : 0.0085 ms
-     run 05  : 0.0084 ms
-     run 06  : 0.0081 ms
-     run 07  : 0.0082 ms
-     run 08  : 0.0081 ms
-     run 09  : 0.0081 ms
+     run 04  : 0.0083 ms
+     run 05  : 0.0082 ms
+     run 06  : 0.0082 ms
+     run 07  : 0.0081 ms
+     run 08  : 0.0082 ms
+     run 09  : 0.0083 ms
      run 10  : 0.0081 ms
-     avg    : 0.0093 ms   min: 0.0081 ms   max: 0.0149 ms
+     avg    : 0.0092 ms   min: 0.0081 ms   max: 0.0149 ms
 
 [06] (a + b) * c
      result : 37.500000
-     run 01  : 0.0359 ms
-     run 02  : 0.0206 ms
-     run 03  : 0.0106 ms
-     run 04  : 0.0103 ms
-     run 05  : 0.0101 ms
-     run 06  : 0.0103 ms
-     run 07  : 0.0101 ms
-     run 08  : 0.0103 ms
-     run 09  : 0.0099 ms
-     run 10  : 0.0234 ms
-     avg    : 0.0152 ms   min: 0.0099 ms   max: 0.0359 ms
+     run 01  : 0.0129 ms
+     run 02  : 0.0116 ms
+     run 03  : 0.0107 ms
+     run 04  : 0.0108 ms
+     run 05  : 0.0103 ms
+     run 06  : 0.0104 ms
+     run 07  : 0.0103 ms
+     run 08  : 0.0104 ms
+     run 09  : 0.0101 ms
+     run 10  : 0.0101 ms
+     avg    : 0.0108 ms   min: 0.0101 ms   max: 0.0129 ms
 
 [07] a * b - c / d
      result : 49.375000
-     run 01  : 0.0122 ms
-     run 02  : 0.0114 ms
-     run 03  : 0.0203 ms
-     run 04  : 0.0109 ms
-     run 05  : 0.0105 ms
-     run 06  : 0.0105 ms
-     run 07  : 0.0105 ms
-     run 08  : 0.0103 ms
-     run 09  : 0.0103 ms
-     run 10  : 0.0103 ms
-     avg    : 0.0117 ms   min: 0.0103 ms   max: 0.0203 ms
+     run 01  : 0.0127 ms
+     run 02  : 0.0118 ms
+     run 03  : 0.0115 ms
+     run 04  : 0.0115 ms
+     run 05  : 0.0110 ms
+     run 06  : 0.0196 ms
+     run 07  : 0.0111 ms
+     run 08  : 0.0111 ms
+     run 09  : 0.0110 ms
+     run 10  : 0.0519 ms
+     avg    : 0.0163 ms   min: 0.0110 ms   max: 0.0519 ms
 
 [08] (a - b) / c + d
      result : 6.000000
-     run 01  : 0.0137 ms
-     run 02  : 0.0131 ms
-     run 03  : 0.0125 ms
-     run 04  : 0.0125 ms
-     run 05  : 0.0124 ms
-     run 06  : 0.0124 ms
-     run 07  : 0.0125 ms
-     run 08  : 0.0124 ms
-     run 09  : 0.0124 ms
-     run 10  : 0.0124 ms
-     avg    : 0.0126 ms   min: 0.0124 ms   max: 0.0137 ms
+     run 01  : 0.0151 ms
+     run 02  : 0.0137 ms
+     run 03  : 0.0132 ms
+     run 04  : 0.0131 ms
+     run 05  : 0.0131 ms
+     run 06  : 0.0131 ms
+     run 07  : 0.0136 ms
+     run 08  : 0.0130 ms
+     run 09  : 0.0130 ms
+     run 10  : 0.0131 ms
+     avg    : 0.0134 ms   min: 0.0130 ms   max: 0.0151 ms
 
 [09] a + b - c * d / 2
      result : 10.000000
-     run 01  : 0.0147 ms
-     run 02  : 0.0135 ms
-     run 03  : 0.0136 ms
-     run 04  : 0.0133 ms
-     run 05  : 0.0131 ms
-     run 06  : 0.0132 ms
-     run 07  : 0.0131 ms
-     run 08  : 0.0132 ms
-     run 09  : 0.0130 ms
-     run 10  : 0.0133 ms
-     avg    : 0.0134 ms   min: 0.0130 ms   max: 0.0147 ms
+     run 01  : 0.0161 ms
+     run 02  : 0.0146 ms
+     run 03  : 0.0143 ms
+     run 04  : 0.0140 ms
+     run 05  : 0.0140 ms
+     run 06  : 0.0140 ms
+     run 07  : 0.0138 ms
+     run 08  : 0.0140 ms
+     run 09  : 0.0138 ms
+     run 10  : 0.0140 ms
+     avg    : 0.0143 ms   min: 0.0138 ms   max: 0.0161 ms
 
 [10] ((a * b) + (c * d)) / (a - b)
      result : 12.000000
-     run 01  : 0.0284 ms
-     run 02  : 0.0240 ms
-     run 03  : 0.0235 ms
-     run 04  : 0.0233 ms
-     run 05  : 0.0232 ms
-     run 06  : 0.0233 ms
-     run 07  : 0.0234 ms
-     run 08  : 0.0331 ms
-     run 09  : 0.0962 ms
-     run 10  : 0.0349 ms
-     avg    : 0.0333 ms   min: 0.0232 ms   max: 0.0962 ms
+     run 01  : 0.0373 ms
+     run 02  : 0.0256 ms
+     run 03  : 0.0251 ms
+     run 04  : 0.0252 ms
+     run 05  : 0.0248 ms
+     run 06  : 0.0247 ms
+     run 07  : 0.0248 ms
+     run 08  : 0.0247 ms
+     run 09  : 0.0247 ms
+     run 10  : 0.0246 ms
+     avg    : 0.0262 ms   min: 0.0246 ms   max: 0.0373 ms
 
 ------------------------------------------------------------------------------
 #   Expression                           Avg (ms)     Min (ms)     Max (ms)
 ------------------------------------------------------------------------------
-1   a + b                                  0.0125       0.0055       0.0545
-2   a - b                                  0.0058       0.0054       0.0071
-3   a * b                                  0.0108       0.0053       0.0561
-4   a / b                                  0.0056       0.0052       0.0070
-5   a + b * 2                              0.0093       0.0081       0.0149
-6   (a + b) * c                            0.0152       0.0099       0.0359
-7   a * b - c / d                          0.0117       0.0103       0.0203
-8   (a - b) / c + d                        0.0126       0.0124       0.0137
-9   a + b - c * d / 2                      0.0134       0.0130       0.0147
-10  ((a * b) + (c * d)) / (a - b)          0.0333       0.0232       0.0962
+1   a + b                                  0.0148       0.0057       0.0676
+2   a - b                                  0.0059       0.0054       0.0075
+3   a * b                                  0.0067       0.0054       0.0139
+4   a / b                                  0.0055       0.0051       0.0064
+5   a + b * 2                              0.0092       0.0081       0.0149
+6   (a + b) * c                            0.0108       0.0101       0.0129
+7   a * b - c / d                          0.0163       0.0110       0.0519
+8   (a - b) / c + d                        0.0134       0.0130       0.0151
+9   a + b - c * d / 2                      0.0143       0.0138       0.0161
+10  ((a * b) + (c * d)) / (a - b)          0.0262       0.0246       0.0373
 ------------------------------------------------------------------------------
-    TOTAL AVG                              0.0130
+    TOTAL AVG                              0.0123
 ==============================================================================

@@ -11,7 +11,7 @@ from compiler import Lexer, Parser, Evaluator
 from compiler.gpu import Flattener, GPUExecutor
 
 RUNS = 10
-STAGES = ["compile", "buffers", "setup", "dispatch", "readback"]
+STAGES = ["compile", "buffers", "setup", "dispatch", "readback", "gpu_exec"]
 ENV = {"a": 10.0, "b": 5.0, "c": 2.5, "d": 4.0}
 
 EXPRESSIONS = [
@@ -97,22 +97,23 @@ def detail_block(results):
 
 def stage_table(results):
     lines = [
-        "-" * 78,
+        "-" * 96,
         " GPU stage breakdown (avg ms per run)",
-        "-" * 78,
-        f"{'Expression':<32} {'Compile':>10} {'Buffers':>10} {'Setup':>10}"
-        f" {'Dispatch':>10} {'Readback':>10} {'Sum':>10}",
-        "-" * 78,
+        "-" * 96,
+        f"{'Expression':<32} {'Compile':>9} {'Buffers':>9} {'Setup':>9}"
+        f" {'Dispatch':>10} {'GpuExec':>9} {'Readback':>9} {'Sum':>9}",
+        "-" * 96,
     ]
     for item in results:
         code, _, _, stages = item
-        vals = [sum(stages[s]) / len(stages[s]) for s in STAGES]
+        order = ["compile", "buffers", "setup", "dispatch", "gpu_exec", "readback"]
+        vals = [sum(stages[s]) / len(stages[s]) for s in order]
         total = sum(vals)
         lines.append(
-            f"{code:<32} {vals[0]:>10.4f} {vals[1]:>10.4f} {vals[2]:>10.4f}"
-            f" {vals[3]:>10.4f} {vals[4]:>10.4f} {total:>10.4f}"
+            f"{code:<32} {vals[0]:>9.4f} {vals[1]:>9.4f} {vals[2]:>9.4f}"
+            f" {vals[3]:>10.4f} {vals[4]:>9.4f} {vals[5]:>9.4f} {total:>9.4f}"
         )
-    lines.append("-" * 78)
+    lines.append("-" * 96)
     lines.append("")
     return lines
 
@@ -178,8 +179,10 @@ def main():
         gpu_results.append((code, result, times, stages))
         comp = sum(stages["compile"]) / RUNS
         disp = sum(stages["dispatch"]) / RUNS
+        gexec = sum(stages["gpu_exec"]) / RUNS
         print(f"  [GPU] {code:<35} avg {sum(times)/len(times):.4f} ms "
-              f"(compile {comp:.4f}, dispatch {disp:.4f}) -> {result}")
+              f"(compile {comp:.4f}, dispatch {disp:.4f}, "
+              f"gpu_exec {gexec:.4f}) -> {result}")
 
     cpu_path = os.path.join(OUT_DIR, "cpu_benchmark.txt")
     gpu_path = os.path.join(OUT_DIR, "gpu_benchmark.txt")
