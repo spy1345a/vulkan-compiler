@@ -1,5 +1,5 @@
 from compiler import Lexer, Parser, Evaluator
-from compiler.vulkan import Flattener, GPUExecutor
+from compiler.gpu import Flattener, GPUExecutor
 
 def compile(code):
     tokens = Lexer(code).tokenize()
