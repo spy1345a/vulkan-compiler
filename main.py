@@ -1,31 +1,14 @@
-from compiler import Lexer, Parser, Evaluator
-from compiler.gpu.vulkan import Flattener, GPUExecutor
+from  compiler  import Parser , Lexer , Flattener , vm
+from compiler import Compiler ,Cpu 
+# example code
+code = "1 + 2 * 3"
 
-def compile(code):
-    tokens = Lexer(code).tokenize()
-    return Parser(tokens).parse()
+# tokonizer of the code
+token = Lexer.tokenize(code)
+print(token ,"\n")
 
-def run_cpu(code, env):
-    return Evaluator(env).eval(compile(code))
+# prashing building an ats tree 
+ats = Parser.parse(token)
+print (ats,"\n")
 
-def run_gpu(code, env, gpu):
-    f = Flattener()
-    f.flatten(compile(code))
-    vars = [None] * len(f.var_map)
-    for name, (_, idx) in f.var_map.items():
-        vars[idx] = env[name]
-    return gpu.run(f.get_flat(), f.const_values, vars)
-
-
-# ── run ───────────────────────────────────────────
-env  = {"a": 10.0, "b": 5.0}
-code = "a + b * 2"
-gpu  = GPUExecutor()
-
-cpu = run_cpu(code, env)
-g   = run_gpu(code, env, gpu)
-
-print(f"Code:   {code}")
-print(f"CPU:    {cpu}")
-print(f"GPU:    {g}")
-print(f"Match:  {abs(cpu - g) < 1e-4}")
+Cpu.run(program="program.toy")
