@@ -1,5 +1,5 @@
 from  toyc  import Parser , Lexer , Flattener , vm
-from toyc import Compiler ,Cpu 
+from toyc import Compiler ,Cpu , GpuOpengl , GpuVulkan
 # example code
 code = "1 + 2 * 3"
 
