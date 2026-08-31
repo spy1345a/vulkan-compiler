@@ -1,5 +1,5 @@
-from  compiler  import Parser , Lexer , Flattener , vm
-from compiler import Compiler ,Cpu 
+from  toyc  import Parser , Lexer , Flattener , vm
+from toyc import Compiler ,Cpu 
 # example code
 code = "1 + 2 * 3"
 
