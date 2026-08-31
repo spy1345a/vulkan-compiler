@@ -2,4 +2,4 @@ cffi      == 2.1.1
 pip       == 26.2.1
 pycparser == 3.0
 vulkan    == 1.3.275.1
-toyc      >= 0.1.0
+toyc      >= 0.1.0 # my own libery
