@@ -12,3 +12,5 @@ ats = Parser.parse(token)
 print (ats,"\n")
 
 Cpu.run(program="program.toy")
+
+GpuVulkan.run(program = "program.toy")
