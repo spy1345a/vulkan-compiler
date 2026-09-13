@@ -11,3 +11,9 @@ __pycache__
 
 # compiled shaders
 *.spv
+
+# csv files
+*.csv
+
+# temp files
+temp.txt

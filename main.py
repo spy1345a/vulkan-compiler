@@ -1,16 +1,15 @@
-from  toyc  import Parser , Lexer , Flattener , vm
-from toyc import Compiler ,Cpu , GpuOpengl , GpuVulkan
-# example code
-code = "1 + 2 * 3"
+from toyc import GpuVulkan, Cpu
+from toyc.bench import bench, batch_bench, summarize, to_csv
 
-# tokonizer of the code
-token = Lexer.tokenize(code)
-print(token ,"\n")
 
-# prashing building an ats tree 
-ats = Parser.parse(token)
-print (ats,"\n")
+code = "1+2"
 
-Cpu.run(program="program.toy")
+cpu_result_single = Cpu.run(program="program.toy", silent=True)
+print("cpu:", cpu_result_single)
 
-GpuVulkan.run(program = "program.toy")
+gpu_result_single = GpuVulkan.run(program=code, silent=True)
+
+print("gpu:",gpu_result_single)
+
+
+GpuVulkan.shutdown()
