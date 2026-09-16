@@ -1,0 +1,7 @@
+# Direct dependencies only (transitives like vulkan/cffi resolve
+# automatically via toyc). No pandas/matplotlib here on purpose.
+toyc >= 0.2.8  # the compiler library under study
+
+# NOTE, not pip-installable: needs a Vulkan driver. The Vulkan SDK
+# (glslangValidator) is only needed if you edit the bundled shaders.
+# https://vulkan.lunarg.com/sdk/home
