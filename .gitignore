@@ -4,7 +4,7 @@ __pycache__
 
 
 #enviroment files
-*.venv
+*.venv*
 
 # complied code
 *.toyc
@@ -17,3 +17,6 @@ __pycache__
 
 # temp files
 temp.txt
+
+# juputer notebookes , iam usingfor testig code and chart buulding wiht matplotlib
+*.ipynb
