@@ -20,3 +20,6 @@ temp.txt
 
 # juputer notebookes , iam usingfor testig code and chart buulding wiht matplotlib
 *.ipynb
+
+# DataBase files
+*.db
