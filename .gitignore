@@ -23,3 +23,9 @@ temp.txt
 
 # DataBase files
 *.db
+*.db.wal
+
+# image files
+*.png
+*.jpg
+*.jpeg
